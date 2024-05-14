@@ -1,4 +1,4 @@
-import WebSocketServer from './websocketServer.js';
+import WebSocketServer from '/websocketServer.js';
 
 class Player {
     constructor(option) {
