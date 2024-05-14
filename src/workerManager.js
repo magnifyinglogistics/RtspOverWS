@@ -45,8 +45,28 @@ function WorkerManager() {
 
     constructor.prototype = {
         init(video,canvas) {
-            const workerUrl = new URL('./videoWorker.js', import.meta.url);
-            videoWorker = new Worker(workerUrl);
+
+
+            // The script there simply posts back an "Hello" message
+            // Obviously cross-origin here
+            const cross_origin_script_url = new URL('./videoWorker.js', import.meta.url);
+            
+            const worker_url = getWorkerURL( cross_origin_script_url );
+            videoWorker = new Worker( worker_url );
+            //worker.onmessage = (evt) => console.log( evt.data );
+            URL.revokeObjectURL( worker_url );
+            
+            // Returns a blob:// URL which points
+            // to a javascript file which will call
+            // importScripts with the given URL
+
+            function getWorkerURL( url ) {
+              const content = `importScripts( "${ url }" );`;
+              return URL.createObjectURL( new Blob( [ content ], { type: "text/javascript" } ) );
+            }
+            
+            //const workerUrl = new URL('./videoWorker.js', import.meta.url);
+            //videoWorker = new Worker(workerUrl);
             videoWorker.onmessage = videoWorkerMessage;
             videoElement = video;
             canvasElement = canvas;
