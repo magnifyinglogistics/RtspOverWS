@@ -1,3 +1,4 @@
+import.meta.url;
 import VideoMediaSource from './MediaSource.js';
 import MP4Remux from './MP4Remux.js';
 import IvsDrawer from './ivsDrawer.js';
@@ -44,7 +45,8 @@ function WorkerManager() {
 
     constructor.prototype = {
         init(video,canvas) {
-            videoWorker = new Worker('./src/videoWorker.js');
+            const workerUrl = new URL('./videoWorker.js', import.meta.url);
+            videoWorker = new Worker(workerUrl);
             videoWorker.onmessage = videoWorkerMessage;
             videoElement = video;
             canvasElement = canvas;
