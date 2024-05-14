@@ -1,3 +1,4 @@
+import.meta.url;
 import WorkerManager from './workerManager.js';
 import {hex_md5}  from "./md5.js";
 
