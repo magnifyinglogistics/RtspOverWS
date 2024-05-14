@@ -1,3 +1,4 @@
+import.meta.url;
 importScripts(
     './H264SPSParser.js',
     './H264Session.js',
