@@ -1,14 +1,7 @@
-// 你需要自定義一個函數來解析並加載脚本
-function resolveAndImportScripts(base, ...scripts) {
-    scripts.forEach(script => {
-        // 注意，這裏只做示範，實際應用中可能需要更複雜嘅路徑解析
-        const absoluteUrl = new URL(script, base).href;
-        importScripts(absoluteUrl);
-    });
-}
-
-resolveAndImportScripts(import.meta.url, './H264SPSParser.js', './H264Session.js');
-
+importScripts(
+    './H264SPSParser.js',
+    './H264Session.js',
+);
 
 addEventListener('message', receiveMessage);
 
