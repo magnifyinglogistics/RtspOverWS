@@ -52,7 +52,7 @@ function WorkerManager() {
             const cross_origin_script_url = new URL('./videoWorker.js', import.meta.url);
             
             const worker_url = getWorkerURL( cross_origin_script_url );
-            videoWorker = new Worker( worker_url, {type: "module"} );
+            videoWorker = new Worker( worker_url );
             //worker.onmessage = (evt) => console.log( evt.data );
             URL.revokeObjectURL( worker_url );
             
