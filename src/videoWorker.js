@@ -1,6 +1,6 @@
 importScripts(
-    './H264SPSParser.js',
-    './H264Session.js',
+    '/H264SPSParser.js',
+    '/H264Session.js',
 );
 
 addEventListener('message', receiveMessage);
